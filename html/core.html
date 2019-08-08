@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tasks Queue</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="containerDesignation" class="p-4">
+            <span class="display-4 mx-auto">
+                <span class="text-muted">API</span> <span class="text-primary">Actions</span>
+            </span>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <a href="#" id="getJsonApiPosts" class="btn btn-block btn-info">Json API Users</a>
+                <div id="postsList" class="p-3">
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form">
+                    <div class="form-group">
+                        <label for="title" class="font-weight-bold">Title</label>
+                        <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Insert Title">
+                        <small id="titleHelp" class="form-text text-muted">Insert a Title.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="body" class="font-weight-bold">Body</label>
+                        <input type="text" class="form-control" id="body" aria-describedby="bodyHelp" placeholder="Insira Body">
+                        <small id="bodyHelp" class="form-text text-muted">Insert a Body.</small>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="btn btn-block btn-primary" id="submitButton">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="..\JS\Core.js"></script>
+</body>
+
+</html>
