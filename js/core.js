@@ -1,12 +1,12 @@
 /*Object Literal -> Revealing Modular Pattern*/
-const valuesForm = (function() {
+const valuesForm = () => {
 
     /*This will create a PRIVATE Variable inside the Object, only possible to access in this scope*/
     const func = 0;
 
     const getValues = {
-        title: document.getElementById("title").value,
-        body: document.getElementById("body").value
+        title: document.querySelector("#title").value,
+        body: document.querySelector("#body").value
     };
 
     /*This can be accessed outside of this scope*/
@@ -14,56 +14,59 @@ const valuesForm = (function() {
         getValues: getValues
     };
 
-});
+};
 
 /*Modulo jsonAPI*/
-const jsonAPI = (function() {
-
-    const postToApi = (e) => {
-
-        e.preventDefault();
-
-        const { title, body } = valuesForm().getValues;
-
-        fetch("https://jsonplaceholder.typicode.com/posts", {
-                method: "post",
-                headers: {
-                    "Accept": "application/json, text/plain, */*",
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify({ title: title, body: body })
+const jsonAPI = () => {
+    const url = "https://jsonplaceholder.typicode.com";
+    const postToApi = async () => {
+        const {
+            title,
+            body
+        } = valuesForm().getValues;
+        const response = await fetch(`${url}/posts`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                title: title,
+                body: body
             })
-            .then((result) => result.json())
-            .then((data) => console.log(data))
+        });
+        const data = await response.json();
+        document.querySelector("#responseList").innerHTML += `<p>${JSON.stringify(data)}</p>`;
     }
 
-    const getFromAPI = () => {
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then((result) => result.json())
-            .then((data) => {
+    const getFromAPI = async () => {
+        const response = await fetch(`${url}/users`);
+        const data = await response.json();
 
-                let constructString = '<h4 class="py-2 text-primary">Api Users<h4>';
+        let constructString = '<h4 class="py-2 text-primary">Api Users<h4>';
 
-                data.forEach((post) => {
-                    const { name, email, username } = post;
+        data.forEach((post) => {
+            const {
+                name,
+                email,
+                username
+            } = post;
 
-                    constructString += `
-                       <div id="user${username}" class="py-2">
-                            <span class="small font-weight-bold">${name}</span>
-                            <span class="small">${email}</small>
-                       </div>
-                    `;
-                });
-
-                document.getElementById("postsList").innerHTML = constructString;
-
-            })
-            .catch((error) => console.log(error));
+            constructString += `
+                           <div id="user${username}" class="py-2">
+                                <span class="small font-weight-bold">${name}</span>
+                                <span class="small">${email}</small>
+                           </div>
+                        `;
+        });
+        document.querySelector("#postsList").innerHTML = constructString;
     }
 
-    return { postToApi: postToApi, getFromAPI: getFromAPI };
-});
+    return {
+        postToApi: postToApi,
+        getFromAPI: getFromAPI
+    };
+}
 
-document.getElementById("submitButton").addEventListener("click", jsonAPI().postToApi);
-
-document.getElementById("getJsonApiPosts").addEventListener("click", jsonAPI().getFromAPI);
+document.querySelector("#submitButton").addEventListener("click", jsonAPI().postToApi);
+document.querySelector("#getJsonApiPosts").addEventListener("click", jsonAPI().getFromAPI);
